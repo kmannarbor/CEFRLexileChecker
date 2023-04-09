@@ -1,0 +1,30 @@
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+# function to determine lexile level based on text
+def get_lexile_level(text):
+    # insert your code here to determine the lexile level based on the text
+    # for example:
+    lexile_level = 700
+    return lexile_level
+
+# function to determine CEFR level based on text
+def get_cefr_level(text):
+    # insert your code here to determine the CEFR level based on the text
+    # for example:
+    cefr_level = 'B1'
+    return cefr_level
+
+# route to handle GET requests to /get_text_levels
+@app.route('/get_text_levels', methods=['GET'])
+def get_text_levels():
+    # get the text from the query string parameter 'text'
+    text = request.args.get('text')
+    
+    # determine the lexile level and CEFR level of the text
+    lexile_level = get_lexile_level(text)
+    cefr_level = get_cefr_level(text)
+    
+    # return a JSON response with the lexile level and CEFR level
+    return jsonify({'lexile_level': lexile_level, 'cefr_level': cefr_level})
